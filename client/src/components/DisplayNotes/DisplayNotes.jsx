@@ -1,25 +1,23 @@
-import { useEffect, useState } from "react";
-import fetchNotes from "/home/theresa/repos/cool-note-app-react/client/src/api/fetchNotes";
 
-const DisplayNotes = () => {
-  const [notes, setNotes] = useState([]);
 
-  useEffect(()=> {
-    const loadNotes = async () => {
-      const data = await fetchNotes();
-      setNotes(data);
-    }
-    loadNotes();
-  }, []);
-
-  console.log(notes);
- 
+const DisplayNotes = ({ notes, onClickEdit, editCounter }) => {
   return (
-    <div className = "notes">
-      {notes.map((note) => <p key = {note.id}>{note.description}</p>)}
+    <div>
+      <div className="notes">
+        {notes.length !== 0 ? (
+          notes.map((note) => (
+            <div key={note.id}>
+              <p>{note.description}</p>
+              <button onClick={() => onClickEdit(note)}>Edit</button>
+            </div>
+          ))
+        ) : (
+          <div>no notes saved</div>
+        )}
+      </div>
+      <small>Edit counter: {editCounter}</small>
     </div>
-  
   );
-}
+};
 
 export default DisplayNotes;
