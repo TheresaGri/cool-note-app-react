@@ -4,7 +4,7 @@ const EditForm = ({ note, handleSubmit, handleChange }) => {
   return (
     <div className="edit_form">
       {note !== null ? (
-        <form onSubmit={handleSubmit}>
+        <form >
           <label>
             Note description:
             <textarea
@@ -12,7 +12,7 @@ const EditForm = ({ note, handleSubmit, handleChange }) => {
               onChange={handleChange}
             ></textarea>
           </label>
-          <input type="submit" value="Submit" />
+          <button onClick ={handleSubmit}>Submit</button>
         </form>
       ) : (
         <div> no note found by this id</div>

@@ -3,7 +3,7 @@ import fetchNoteByid from "/home/theresa/repos/cool-note-app-react/client/src/ap
 import { useParams } from "react-router-dom";
 import EditForm from "../../components/EditForm/EditForm";
 import { useNavigate } from "react-router-dom";
-import patchNote from "../../api/patchNote";
+import putNote from "../../api/putNote";
 
 const EditPage = () => {
   const { id } = useParams();
@@ -23,19 +23,20 @@ const EditPage = () => {
   }, [id]);
 
   const handleChange = (event) => {
-    setNote({...note, description: event.target.value });
+    if (note !== null) {
+      setNote({ ...note, description: event.target.value });
+    }
   };
-  console.log(note);
 
+  console.log(note);
   //check this function again, something is not working
   const handleSubmit = async () => {
-    try {
-      const updatedNote = { ...note }; // Create a copy of the current note object
-      await patchNote(updatedNote); // Send the updated note to the server
-      navigate("/"); // Navigate back to the main page
-    } catch (error) {
-      console.error("Error updating note:", error);
-    }
+      console.log("line 33", note.id, note.description);
+      if (note !== null && note !== undefined) {
+        await putNote(note);
+      }
+      navigate("/");
+    
   };
 
   return (
