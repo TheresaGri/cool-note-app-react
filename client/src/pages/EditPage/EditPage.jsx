@@ -22,21 +22,18 @@ const EditPage = () => {
     loadNote();
   }, [id]);
 
+
   const handleChange = (event) => {
-    if (note !== null) {
-      setNote({ ...note, description: event.target.value });
-    }
+    setNote({...note, description: event.target.value});
   };
 
-  console.log(note);
-  //check this function again, something is not working
+
+
   const handleSubmit = async () => {
-      console.log("line 33", note.id, note.description);
-      if (note !== null && note !== undefined) {
-        await putNote(note);
-      }
-      navigate("/");
-    
+    if (note) {
+      await putNote(note);
+    } 
+    navigate("/");
   };
 
   return (

@@ -1,10 +1,14 @@
 import "./EditForm.css";
 
 const EditForm = ({ note, handleSubmit, handleChange }) => {
+
+  const handleSubmitPreventDefault = (event) => {
+     event.preventDefault();
+   }
   return (
     <div className="edit_form">
       {note !== null ? (
-        <form >
+        <form onSubmit={handleSubmitPreventDefault}>
           <label>
             Note description:
             <textarea
@@ -12,7 +16,7 @@ const EditForm = ({ note, handleSubmit, handleChange }) => {
               onChange={handleChange}
             ></textarea>
           </label>
-          <button onClick ={handleSubmit}>Submit</button>
+          <button onClick={handleSubmit}>Submit</button>
         </form>
       ) : (
         <div> no note found by this id</div>

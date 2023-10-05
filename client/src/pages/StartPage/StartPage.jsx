@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 const StartPage = () => {
+  //change so that edicounter is always updated, maybe in the router
   const [notes, setNotes] = useState([]);
   const [editCounter, setEditCounter] = useState(0);
   const navigate = useNavigate();
@@ -16,7 +17,6 @@ const StartPage = () => {
     loadNotes();
   }, []);
 
-  console.log(notes);
   const onClickEdit = (id) => {
     console.log(id);
     setEditCounter(editCounter + 1);
@@ -28,8 +28,8 @@ const StartPage = () => {
       <DisplayNotes
         notes={notes}
         onClickEdit={onClickEdit}
-        editCounter={editCounter}
       />
+      <small>{editCounter}</small>
     </div>
   );
 };
