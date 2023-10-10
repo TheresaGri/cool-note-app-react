@@ -1,7 +1,7 @@
 import "./DisplayNotes.css";
 import { useNavigate } from "react-router-dom";
 
-const DisplayNotes = ({ notes, onClickEdit}) => {
+const DisplayNotes = ({ notes, onClickEdit, onDelete }) => {
   const navigate = useNavigate();
 
   return (
@@ -13,6 +13,9 @@ const DisplayNotes = ({ notes, onClickEdit}) => {
               <p>{note.description}</p>
               <button onClick={() => onClickEdit(parseInt(note.id))}>
                 Edit
+              </button>
+              <button onClick={() => onDelete(parseInt(note.id))}>
+                Delete
               </button>
             </div>
           ))
